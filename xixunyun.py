@@ -20,7 +20,9 @@ data = {
 }
 headers = {'Content-Type': 'application/json'}
 
-response = requests.post(url='https://service-nm4jylpg-1251957121.gz.apigw.tencentcs.com/release/xixunyun', headers=headers, data=json.dumps(data))
+response = requests.post(url='https://api.xixunyun.com/login/api?from=app&version=5.1.1&platform=android', headers=headers, data=json.dumps(data))
+if response.status_code==200:
+  re = requests.get(url='https://api.xixunyun.com/signin_rsa?from=app&version=5.1.1&platform=android&entrance_year=0&graduate_year=0&school_id='+school_id, headers=headers, cookies=response.cookies)
 print(response.json()["data"])
 
 SCKEY=os.environ["SCKEY"]
